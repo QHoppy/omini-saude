@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "ci:lint": "prettier --check src",
     "typecheck": "tsc --noEmit",
-    "test:ci": "echo 'Success tests"
+    "test:ci": "echo 'Success tests'"
   },
   "dependencies": {
     "react": "^18.2.0",
