@@ -23,7 +23,7 @@ jobs:
     - run: npm pkg delete scripts.prepare
 
     - name: Install dependencies
-      run: yarn --frozen-lockfile
+      run: yarn install --frozen-lockfile
 
     - name: Linting
       run: yarn ci:lint
