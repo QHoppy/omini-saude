@@ -17,9 +17,10 @@ runs:
         aws-region: 'us-east-1'
 
     - name: Download Artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: ${{ inputs.artifact-name }}
+        path: $GITHUB_WORKSPACE
 
     - name: Deploy to S3
-      run: aws s3 sync ${{ inputs.artifact-name }}/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude ".git/*" --exclude "node_modules/*"
+      run: aws s3 sync --delete ./${{ inputs.artifact-name }} s3://${{ secrets.AWS_S3_BUCKET_NAME }}
