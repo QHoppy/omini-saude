@@ -1,6 +1,11 @@
 name: cd
 description: deploy application
 
+inputs:
+  artifact-name:
+    description: artifact name
+    required: true
+
 runs:
   using: composite
   steps:
@@ -10,6 +15,12 @@ runs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: 'us-east-1'
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: build
 
     - name: Deploy to S3
       run: aws s3 sync build/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude ".git/*" --exclude "node_modules/*"
