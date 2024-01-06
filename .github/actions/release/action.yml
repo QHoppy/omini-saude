@@ -23,4 +23,5 @@ runs:
         path: $GITHUB_WORKSPACE
 
     - name: Deploy to S3
+      shell: bash
       run: aws s3 sync --delete ./${{ inputs.artifact-name }} s3://${{ env.AWS_S3_BUCKET_NAME }}
