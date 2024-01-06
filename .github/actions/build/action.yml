@@ -34,8 +34,14 @@ runs:
       shell: bash
       run: yarn test:ci
 
-    - name: Build
+    - id: build
+      name: Build
       shell: bash
       run: |
         yarn build
         echo "artifact-name=build" >> $GITHUB_OUTPUT
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.build.outputs.artifact-name }}

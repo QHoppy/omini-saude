@@ -21,5 +21,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Release
         uses: ./.github/actions/release
