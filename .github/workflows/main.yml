@@ -8,11 +8,10 @@ on:
 
 jobs:
   ci:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Build
-      uses: QHoppy/omini-saude/.github/actions/build.yml@main
+      - name: Build
+        uses: qhoppy/omini-saude/.github/actions/build.yml@main
