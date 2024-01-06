@@ -15,4 +15,4 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build
-      uses: qhoppy/omini-saude/.github/actions/build.yml@main
+      uses: QHoppy/omini-saude/.github/actions/build.yml@main
