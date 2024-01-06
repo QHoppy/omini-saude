@@ -1,0 +1,16 @@
+name: Omini CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build
+      uses: ./.github/actions/build.yml

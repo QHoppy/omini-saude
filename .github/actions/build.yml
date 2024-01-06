@@ -1,17 +1,9 @@
-name: Omini CI
+name: ci
+description: build application
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  ci:
-
-    runs-on: ubuntu-latest
-
-    steps:
+runs:
+  using: "composite"
+  steps:
     - uses: actions/checkout@v3
 
     - name: Use Node.js 20.x
