@@ -21,7 +21,7 @@ runs:
       with:
         name: ${{ inputs.artifact-name }}
 
-  - name: Unzip Artifact
+    - name: Unzip Artifact
       shell: bash
       run: |
         unzip ${{ inputs.artifact-name }}.zip
