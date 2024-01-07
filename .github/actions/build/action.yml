@@ -46,4 +46,4 @@ runs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.build.outputs.artifact-name }}
-        path: ./${{ steps.build.outputs.artifact-name }}
+        path: ${{ steps.build.outputs.artifact-name }}
