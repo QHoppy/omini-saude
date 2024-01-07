@@ -24,7 +24,7 @@ runs:
     - name: Unzip Artifact
       shell: bash
       run: |
-        ls
+        echo "$(ls)"
 
     - name: Deploy to S3
       shell: bash
