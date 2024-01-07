@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: omini.danilokasparian.com.br
+      url: https://omini.danilokasparian.com.br
 
     steps:
       - uses: actions/checkout@v3
