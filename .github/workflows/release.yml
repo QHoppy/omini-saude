@@ -12,6 +12,9 @@ on:
           - major
           - minor
           - patch
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   version:
@@ -34,7 +37,7 @@ jobs:
       - name: Update the version
         id: update_version
         run: |
-          echo "version=$(yarn version --${{ github.event.inputs.version }} --no-git-tag-version | grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
+          echo "version=$(yarn version --${{ github.event.inputs.version }} --no-git-tag-version | grep "New version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
 
       - name: Update Changelog
         id: update_changelog
