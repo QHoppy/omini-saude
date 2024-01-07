@@ -1,0 +1,58 @@
+name: Tag and Release Workflow
+
+on:
+  pull_request:
+  types:
+    - closed
+
+jobs:
+  release:
+  runs-on: ubuntu-latest
+  if: startsWith(github.event.pull_request.title, 'Release:')
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'yarn'
+
+    - id: build
+      uses: ./.github/actions/build
+      env:
+        VITE_VERSION: ${{ vars.VITE_VERSION }}
+
+    - name: Set up Git
+      run: |
+        git config user.name "${{ github.event.head_commit.committer.name }}"
+        git config user.email "${{ github.event.head_commit.committer.email }}"
+
+    - name: Get tag
+      id: get_tag
+      run: |
+        git branch --show-current
+        git pull
+        echo "version=$(yarn version --${{ github.event.inputs.version }} --no-git-tag-version | grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
+
+    - name: Tag the commit
+      run: |
+        current_version=${{ steps.get_tag.outputs.version }}
+        git tag -a "$current_version" -m "Version $current_version"
+        git push --follow-tags
+
+    - name: Create changelog diff
+      id: changelog_diff
+      run: |
+        sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
+
+    - name: Create release
+      id: create_release
+      run: |
+        gh release create "$tag" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="Release ${{ steps.get_tag.outputs.version }}" \
+            -F ./release_notes.md
+
+    - name: Delete release_notes file
+      run: rm release_notes.md
