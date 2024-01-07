@@ -13,11 +13,11 @@ jobs:
       name: production
     steps:
       - uses: actions/checkout@v3
-        env:
-          VITE_VERSION: ${{ vars.VITE_VERSION }}
       - id: build
         name: Build
         uses: ./.github/actions/build
+        env:
+          VITE_VERSION: ${{ vars.VITE_VERSION }}
     outputs:
       artifact-name: ${{ steps.build.outputs.artifact-name }}
 
