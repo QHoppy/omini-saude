@@ -39,6 +39,7 @@ runs:
       name: Build
       shell: bash
       run: |
+        env
         yarn build --mode production
         echo "artifact-name=dist" >> $GITHUB_OUTPUT
 
