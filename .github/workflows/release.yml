@@ -3,15 +3,15 @@ name: Prepare release
 on:
   workflow_dispatch:
     inputs:
-      version:
+    version:
       description: 'Version name'
       required: true
       default: 'minor'
       type: choice
       options:
-      - major
-      - minor
-      - patch
+        - major
+        - minor
+        - patch
 
 jobs:
   version:
