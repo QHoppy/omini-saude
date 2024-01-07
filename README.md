@@ -1,3 +1,5 @@
+![example event parameter](https://github.com/QHoppy/omini-saude/actions/workflows/main.yml/badge.svg?event=push)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
