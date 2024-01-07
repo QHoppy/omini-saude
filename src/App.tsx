@@ -1,5 +1,10 @@
 export function App() {
-  return <div>Omini</div>;
+  return (
+    <>
+      <div>Omini</div>
+      <p>%VITE_VERSION%</p>
+    </>
+  );
 }
 
 export default App;
