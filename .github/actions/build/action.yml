@@ -38,8 +38,6 @@ runs:
     - id: build
       name: Build
       shell: bash
-      env:
-        VITE_VERSION: ${{ vars.VITE_VERSION }}
       run: |
         yarn build --mode production
         echo "artifact-name=dist" >> $GITHUB_OUTPUT
