@@ -24,7 +24,9 @@ jobs:
     needs: ci
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    environment: ${{ env.environment }}
+    environment:
+      name: ${{ env.environment }}
+      url: omini.danilokasparian.com.br
 
     steps:
       - uses: actions/checkout@v3
