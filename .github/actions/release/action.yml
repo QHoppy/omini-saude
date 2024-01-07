@@ -21,8 +21,13 @@ runs:
       with:
         name: ${{ inputs.artifact-name }}
 
+  - name: Unzip Artifact
+      shell: bash
+      run: |
+        unzip ${{ inputs.artifact-name }}.zip
+
     - name: Deploy to S3
       shell: bash
       run: |
-        aws s3 sync --delete ${{GITHUB_WORKSPACE}}/${{ inputs.artifact-name }} s3://${{ env.AWS_S3_BUCKET_NAME }}
+        aws s3 sync --delete ${{ inputs.artifact-name }} s3://${{ env.AWS_S3_BUCKET_NAME }}
         aws cloudfront create-invalidation --distribution-id ${{ env.AWS_INVALIDATION_DISTRIBUTION_ID }} --paths /index.html
