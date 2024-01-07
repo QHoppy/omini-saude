@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build
+      - id: build
+        name: Build
         uses: ./.github/actions/build
     outputs:
       artifact-name: ${{ steps.build.outputs.artifact-name }}
