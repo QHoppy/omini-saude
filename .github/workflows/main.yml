@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  ENVIRONMENT: production
-
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -25,7 +22,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     environment:
-      name: ${{ env.ENVIRONMENT }}
+      name: production
       url: omini.danilokasparian.com.br
 
     steps:
