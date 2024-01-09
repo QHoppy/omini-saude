@@ -41,10 +41,10 @@ jobs:
           git tag -a "$current_version" -m "Version $current_version"
           git push --follow-tags
 
-      - name: Create changelog diff
-        id: changelog_diff
-        run: |
-          sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
+      # - name: Create changelog diff
+      #   id: changelog_diff
+      #   run: |
+      #     sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
 
       - name: Create release
         id: create_release
@@ -54,11 +54,12 @@ jobs:
           gh release create ${{ steps.get_tag.outputs.version }} \
               --repo="$GITHUB_REPOSITORY" \
               --title="Release ${{ steps.get_tag.outputs.version }}" \
-              --verify-tag \
+              --verify-tag --generate-notes \
               -F ./release_notes.md
+          echo "🚀 Release created"
 
-      - name: Delete release_notes file
-        run: rm release_notes.md
+      # - name: Delete release_notes file
+      #   run: rm release_notes.md
 
   cd:
     needs: tag
