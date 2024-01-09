@@ -53,7 +53,6 @@ jobs:
               --repo="$GITHUB_REPOSITORY" \
               --title="Release ${{ steps.get_tag.outputs.version }}" \
               --generate-notes
-              --verify-tag
           echo "😌 Release created"
 
     outputs:
