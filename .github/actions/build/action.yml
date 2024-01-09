@@ -5,8 +5,7 @@ inputs:
   upload-artifact:
     description: upload artifact
     required: false
-    defaut: false
-    type: boolean
+    defaut: 'false'
 
 outputs:
   artifact-name:
@@ -57,7 +56,7 @@ runs:
         echo "✅ Build passed"
 
     - name: Upload Artifact
-      if: ${{ inputs.upload-artifact == true }}
+      if: ${{ inputs.upload-artifact == 'true' }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.build.outputs.artifact-name }}
