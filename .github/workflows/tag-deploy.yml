@@ -31,7 +31,7 @@ jobs:
         run: |
           git branch --show-current
           git pull
-          echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
+          echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
 
       - name: Tag the commit
         run: |

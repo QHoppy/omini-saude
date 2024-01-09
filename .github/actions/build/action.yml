@@ -44,7 +44,7 @@ runs:
     - name: Get version
       id: get_version
       shell: bash
-      run: echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
+      run: echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
 
     - id: build
       name: Build
