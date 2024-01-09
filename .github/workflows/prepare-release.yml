@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   version:
+    name: Create Version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
