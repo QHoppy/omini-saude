@@ -1,0 +1,49 @@
+name: ci
+description: build application
+
+outputs:
+  artifact-name:
+    description: artifact name
+    value: ${{ steps.build.outputs.artifact-name }}
+
+runs:
+  using: composite
+  steps:
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'yarn'
+
+    - name: Prepare
+      shell: bash
+      run: npm pkg delete scripts.prepare
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile
+
+    - name: Linting
+      shell: bash
+      run: yarn ci:lint
+
+    - name: Typechecking
+      shell: bash
+      run: yarn typecheck
+
+    - name: Tests
+      shell: bash
+      run: yarn test:ci
+
+    - id: build
+      name: Build
+      shell: bash
+      run: |
+        yarn build --mode production
+        echo "artifact-name=dist" >> $GITHUB_OUTPUT
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ steps.build.outputs.artifact-name }}
+        path: ${{ steps.build.outputs.artifact-name }}
