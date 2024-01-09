@@ -52,7 +52,7 @@ jobs:
           gh release create ${{ steps.get_tag.outputs.version }} \
               --repo="$GITHUB_REPOSITORY" \
               --title="Release ${{ steps.get_tag.outputs.version }}" \
-              --verify-tag --generate-notes
+              --generate-notes
           echo "😌 Release created"
 
     outputs:
@@ -79,5 +79,5 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ vars.AWS_S3_BUCKET_NAME }}
           AWS_INVALIDATION_DISTRIBUTION_ID: ${{ vars.AWS_INVALIDATION_DISTRIBUTION_ID }}
         with:
-          artifact-name: ${{ needs.ci.outputs.artifact-name }}
+          artifact-name: ${{ needs.tag.outputs.artifact-name }}
 
