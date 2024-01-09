@@ -42,6 +42,7 @@ runs:
       run: yarn test:ci
 
     - name: Get version
+      id: get_version
       shell: bash
       run: echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
 
@@ -49,7 +50,7 @@ runs:
       name: Build
       shell: bash
       env:
-        VITE_APP_VERSION: $version
+        VITE_APP_VERSION: ${{ steps.get_version.outputs.version }}
       run: |
         yarn build --mode production
         echo "artifact-name=dist" >> $GITHUB_OUTPUT
