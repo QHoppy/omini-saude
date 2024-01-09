@@ -20,8 +20,6 @@ jobs:
         uses: ./.github/actions/build
         with:
           upload-artifact: true
-        outputs:
-          artifact-name: ${{ steps.build.outputs.artifact-name }}
 
       - name: Set up Git
         run: |
@@ -58,6 +56,8 @@ jobs:
               -F ./release_notes.md
           echo "😌 Release created"
 
+    outputs:
+      artifact-name: ${{ steps.build.outputs.artifact-name }}
       # - name: Delete release_notes file
       #   run: rm release_notes.md
 
