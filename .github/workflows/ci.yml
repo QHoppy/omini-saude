@@ -1,9 +1,9 @@
-name: Omini CI/CD - PROD
+name: CI
 
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: '*'
   pull_request:
     branches: [ "main" ]
 
@@ -11,14 +11,12 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     environment:
-      name: production
+      name: prod
     steps:
       - uses: actions/checkout@v3
       - id: build
         name: Build
         uses: ./.github/actions/build
-        env:
-          VITE_VERSION: ${{ vars.VITE_VERSION }}
     outputs:
       artifact-name: ${{ steps.build.outputs.artifact-name }}
 
@@ -27,7 +25,7 @@ jobs:
   #   if: ${{ github.ref == 'refs/heads/main' }}
   #   runs-on: ubuntu-latest
   #   environment:
-  #     name: production
+  #     name: prod
   #     url: https://omini.danilokasparian.com.br
 
   #   steps:

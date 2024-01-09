@@ -1,6 +1,12 @@
 name: ci
 description: build application
 
+inputs:
+  upload-artifact:
+    description: upload artifact
+    required: false
+    defaut: false
+
 outputs:
   artifact-name:
     description: artifact name
@@ -43,6 +49,7 @@ runs:
         echo "artifact-name=dist" >> $GITHUB_OUTPUT
 
     - name: Upload Artifact
+      if: ${{ inputs.upload-artifact == true }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.build.outputs.artifact-name }}
