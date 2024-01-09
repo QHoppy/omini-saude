@@ -22,7 +22,7 @@ runs:
         name: ${{ inputs.artifact-name }}
         path: ${{ inputs.artifact-name }}
 
-    - name: Deploy to S3
+    - name: Deploy to S3 💣
       shell: bash
       run: |
         aws s3 sync --delete ${{ inputs.artifact-name }} s3://${{ env.AWS_S3_BUCKET_NAME }}
