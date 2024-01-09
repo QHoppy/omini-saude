@@ -1,4 +1,4 @@
-![example event parameter](https://github.com/QHoppy/omini-saude/actions/workflows/main.yml/badge.svg?event=push)
+![example event parameter](https://github.com/QHoppy/omini-saude/actions/workflows/tag-deploy.yml/badge.svg?event=push)
 
 # React + TypeScript + Vite
 

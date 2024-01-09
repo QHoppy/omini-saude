@@ -31,18 +31,18 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config user.name "${{ github.event.head_commit.committer.name }}"
-          git config user.email "${{ github.event.head_commit.committer.email }}"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
       - name: Update the version
         id: update_version
         run: |
           echo "version=$(yarn version --${{ github.event.inputs.version }} --no-git-tag-version | grep "New version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
 
-      - name: Update Changelog
-        id: update_changelog
-        run: |
-          sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
+      # - name: Update Changelog
+      #   id: update_changelog
+      #   run: |
+      #     sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
 
       - name: Create pull request
         id: create_pr
