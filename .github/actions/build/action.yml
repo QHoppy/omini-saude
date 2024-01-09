@@ -6,6 +6,7 @@ inputs:
     description: upload artifact
     required: false
     defaut: false
+    type: boolean
 
 outputs:
   artifact-name:
