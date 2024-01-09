@@ -47,6 +47,7 @@ runs:
       run: |
         yarn build --mode production
         echo "artifact-name=dist" >> $GITHUB_OUTPUT
+        echo "✅ Build passed"
 
     - name: Upload Artifact
       if: ${{ inputs.upload-artifact == true }}

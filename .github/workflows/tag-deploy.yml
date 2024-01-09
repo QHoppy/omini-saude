@@ -56,7 +56,7 @@ jobs:
               --title="Release ${{ steps.get_tag.outputs.version }}" \
               --verify-tag --generate-notes \
               -F ./release_notes.md
-          echo "🚀 Release created"
+          echo "😌 Release created"
 
       # - name: Delete release_notes file
       #   run: rm release_notes.md
