@@ -2,7 +2,7 @@ export function App() {
   return (
     <>
       <div>Omini</div>
-      <p>%VITE_VERSION%</p>
+      <p>%VITE_APP_VERSION%</p>
     </>
   );
 }
