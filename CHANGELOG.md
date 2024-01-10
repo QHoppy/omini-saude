@@ -1,6 +1,6 @@
 ### CHANGELOG
 
-## [v0.1.0]
+## [Unreleased]
 
 ### Added
 asdsa
@@ -8,7 +8,7 @@ asdsa
 asdas
 ### Updated
 asdasd
-## [v0.1.2]
+## [v0.1.1]
 
 ### Added
 Adddd
@@ -17,7 +17,7 @@ fixxx
 ### Updated
 updates
 
-## [v0.1.3]
+## [v0.1.0]
 
 ### Added
 Adddd 3
@@ -26,11 +26,3 @@ fixxx
 ### Updated
 updates
 
-## [v0.1.4]
-
-### Added
-Adddd 4
-### Fixed
-fixxx
-### Updated
-updates
