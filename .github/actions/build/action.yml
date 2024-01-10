@@ -21,6 +21,9 @@ runs:
         node-version: '20.x'
         cache: 'yarn'
 
+    - name: Get last commit SHA
+      run: echo "🫖 Last commit SHA=${GITHUB_SHA}"
+
     - name: Prepare
       shell: bash
       run: npm pkg delete scripts.prepare
