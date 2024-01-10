@@ -34,7 +34,6 @@ jobs:
           git branch --show-current
           git pull
           echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
-          echo "previousVersion=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
 
       - name: Tag the commit
         run: |
@@ -45,7 +44,14 @@ jobs:
       - name: Create changelog diff
         id: changelog_diff
         run: |
-          sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
+          previous_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
+          current_tag="${{ steps.get_tag.outputs.version }}"
+
+          if [ -n "$previous_tag" ]; then
+            sed -n "/^## \[$current_tag\]/,/^## \[$previous_tag\]/{/^## \[$previous_tag\]/!p;}" CHANGELOG.md > release_notes.md
+          else
+            sed -n "/^## \[$current_tag\]/,\$p" CHANGELOG.md > release_notes.md
+          fi
 
       - name: Create release
         id: create_release
