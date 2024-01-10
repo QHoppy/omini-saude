@@ -7,6 +7,7 @@ on:
 
 jobs:
   tag:
+    name: Tag 🪧
     runs-on: ubuntu-latest
     if: startsWith(github.event.pull_request.title, 'Release:') && github.event.pull_request.merged == true
     steps:
@@ -23,7 +24,7 @@ jobs:
         with:
           upload-artifact: true
 
-      - name: Set up Git
+      - name: Set up git
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
@@ -69,6 +70,7 @@ jobs:
       artifact-name: ${{ steps.build.outputs.artifact-name }}
 
   cd:
+    name: Deploy 💣
     needs: tag
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
