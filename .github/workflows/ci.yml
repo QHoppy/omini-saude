@@ -5,9 +5,7 @@ on:
   push:
     branches: '*'
   pull_request:
-    branches: [ "main" ]
-
-if: "!startsWith(github.event.pull_request.title, 'Release:')"
+    branches: [ "main", '!release/**' ]
 
 jobs:
   ci:
