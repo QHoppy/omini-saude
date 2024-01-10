@@ -34,6 +34,7 @@ jobs:
           git branch --show-current
           git pull
           echo "version=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
+          echo "previousVersion=$(yarn version --no-git-tag-version | grep "Current version:" | awk '{ print "v"$4 }')" >> $GITHUB_OUTPUT
 
       - name: Tag the commit
         run: |
@@ -41,10 +42,10 @@ jobs:
           git tag -a "$current_version" -m "Version $current_version"
           git push --follow-tags
 
-      # - name: Create changelog diff
-      #   id: changelog_diff
-      #   run: |
-      #     sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
+      - name: Create changelog diff
+        id: changelog_diff
+        run: |
+          sed -n "/^## \[${{ steps.get_tag.outputs.version }}\]/,/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/{/^## \[$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))\]/!p;}" CHANGELOG.md > release_notes.md
 
       - name: Create release
         id: create_release
@@ -55,12 +56,12 @@ jobs:
               --repo="$GITHUB_REPOSITORY" \
               --title="Release ${{ steps.get_tag.outputs.version }}" \
               --generate-notes
+              -F release_notes.md
+          rm release_notes.md
           echo "😌 Release created"
 
     outputs:
       artifact-name: ${{ steps.build.outputs.artifact-name }}
-      # - name: Delete release_notes file
-      #   run: rm release_notes.md
 
   cd:
     needs: tag

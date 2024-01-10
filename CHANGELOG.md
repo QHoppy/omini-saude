@@ -1,17 +1,18 @@
 ### CHANGELOG
 
-## [0.1.0]
+## [v0.1.0]
 
 ### Added
-
+asdsa
 ### Fixed
-
+asdas
 ### Updated
-
-## [v0.0.0]
+asdasd
+## [v0.1.2]
 
 ### Added
-
+Adddd
 ### Fixed
-
+fixxx
 ### Updated
+updates
