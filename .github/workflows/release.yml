@@ -41,10 +41,10 @@ jobs:
         run: |
           echo "version=$(yarn version --${{ github.event.inputs.version }} --no-git-tag-version | grep "New version:" | awk '{ print $4 }')" >> $GITHUB_OUTPUT
 
-      # - name: Update Changelog
-      #   id: update_changelog
-      #   run: |
-      #     sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
+      - name: Update Changelog
+        id: update_changelog
+        run: |
+          sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
 
       - name: Create pull request
         id: create_pr
