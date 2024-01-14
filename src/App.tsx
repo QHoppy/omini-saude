@@ -1,9 +1,13 @@
+import { CssBaseline, CssVarsProvider } from '@mui/joy';
+
+import { Router } from './routes';
+
 export function App() {
   return (
-    <>
-      <div>Omini</div>
-      <p>%VITE_APP_VERSION%</p>
-    </>
+    <CssVarsProvider>
+      <CssBaseline />
+      <Router />
+    </CssVarsProvider>
   );
 }
 
