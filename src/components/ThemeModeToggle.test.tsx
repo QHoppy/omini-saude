@@ -3,11 +3,11 @@ import { DefaultColorScheme } from '@mui/joy/styles/types';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { ThemeMode } from './ThemeMode';
+import { ThemeModeToggle } from '@components/ThemeModeToggle';
 
 const wrapper = (colorScheme: DefaultColorScheme) => (
   <CssVarsProvider defaultColorScheme={colorScheme}>
-    <ThemeMode />
+    <ThemeModeToggle />
   </CssVarsProvider>
 );
 

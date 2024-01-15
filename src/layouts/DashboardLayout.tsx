@@ -1,13 +1,15 @@
-import { Sheet } from '@mui/joy';
+import { Box } from '@mui/joy';
 import { Outlet } from 'react-router-dom';
 
-import { ThemeMode } from '@/components/ThemeMode';
+import { Header } from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 
 export function DashboardLayout() {
   return (
-    <Sheet variant="outlined">
-      <ThemeMode />
+    <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+      <Header />
+      <Sidebar />
       <Outlet />
-    </Sheet>
+    </Box>
   );
 }
