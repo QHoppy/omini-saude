@@ -3,7 +3,7 @@ import { IconButton, Sheet } from '@mui/joy';
 
 import { toggleSidebar } from '@utils/sidebar';
 
-export function Header() {
+export default function Header() {
   return (
     <Sheet
       sx={{

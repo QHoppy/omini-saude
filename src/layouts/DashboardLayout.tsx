@@ -7,7 +7,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 
-import { Header } from '@components/Header';
+import Header from '@components/Header';
 import Sidebar from '@components/Sidebar';
 import OrderList from '@features/order-list';
 import OrderTable from '@features/order-table';
