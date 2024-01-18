@@ -4,7 +4,7 @@ import { Router } from './routes';
 
 export function App() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       <Router />
     </CssVarsProvider>
