@@ -1,5 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton, Sheet } from '@mui/joy';
+import { GlobalStyles, IconButton, Sheet } from '@mui/joy';
 
 import { toggleSidebar } from '@utils/sidebar';
 
@@ -13,8 +13,7 @@ export default function Header() {
         position: 'fixed',
         top: 0,
         width: '100vw',
-        height: { md: '0', lg: '52' },
-        // height: 'var(--Header-height)',
+        height: 'var(--Header-height)',
         zIndex: 9995,
         p: 2,
         gap: 1,
@@ -23,7 +22,7 @@ export default function Header() {
         boxShadow: 'sm',
       }}
     >
-      {/* <GlobalStyles
+      <GlobalStyles
         styles={(theme) => ({
           ':root': {
             '--Header-height': '52px',
@@ -32,7 +31,7 @@ export default function Header() {
             },
           },
         })}
-      /> */}
+      />
       <IconButton
         onClick={() => toggleSidebar()}
         variant="outlined"
